@@ -3,8 +3,9 @@
 // duplicate variable names.
 
 class KUrl {
-  static const String baseURL = "https://client.edu247.in/api/";
-  static const String topHeadlines = "/top-headlines";
-  
+  static const String baseURL = "http://smartanalytics.aeologic.in/api/api";
+  static const String categories = "/categories";
+  static const String posts = "/posts";
+
 
 }
