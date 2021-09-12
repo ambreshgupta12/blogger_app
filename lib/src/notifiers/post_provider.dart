@@ -10,7 +10,7 @@ class PostProvider with ChangeNotifier {
   Status _status=Status.ideal;
 
   String _postError = '';
-  PostResponse? _postResponse;
+  PostResponse? _postResponse=PostResponse();
 
   PostResponse get postResponse => _postResponse!;
 

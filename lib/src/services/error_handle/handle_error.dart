@@ -25,11 +25,10 @@ class HandleError{
           case DioErrorType.response:
             switch (error.response!.statusCode) {
               case 400:
-                errorDescription =  ErrorResponse.fromJson((json.decode(json.encode(error.response!.data)))).message;//getError(error.response);
+                errorDescription =  ErrorResponse.fromJson((json.decode(json.encode(error.response!.data)))).result!.message;//getError(error.response);
                 break;
               case 401:
-                errorDescription =
-                    ErrorResponse.fromJson((json.decode(json.encode(error.response!.data)))).message;
+                errorDescription = ErrorResponse.fromJson((json.decode(json.encode(error.response!.data)))).message;
                 break;
               case 403:
                 errorDescription = getError(error.response);
@@ -60,7 +59,7 @@ class HandleError{
             errorDescription = "Send timeout in connection with API server";
             break;
           case DioErrorType.other:
-            // TODO: Handle this case.
+            errorDescription = "No internet connection";
             break;
         }
       } else if (error is SocketException) {

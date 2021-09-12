@@ -17,12 +17,12 @@ abstract class RestClient {
   @POST(KUrl.categories)
   @Headers({"Accept": "application/json"})
   @Headers({"Content-type": "application/json"})
-  Future<CategoriesResponse> getCategoriesList();
+  Future<HttpResponse> getCategoriesList();
 
 
   @POST(KUrl.posts)
   @Headers({"Accept": "application/json"})
   @Headers({"Content-type": "application/json"})
-  Future<PostResponse> getPostById({@Body() required PostRequest postRequest});
+  Future<HttpResponse> getPostById({@Body() required PostRequest postRequest});
 
 }

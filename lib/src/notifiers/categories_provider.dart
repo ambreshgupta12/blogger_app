@@ -10,9 +10,9 @@ class CategoriesProvider with ChangeNotifier {
   Status _status=Status.ideal;
 
   String _categoriesError = '';
-  CategoriesResponse? _categoriesResponse;
+  CategoriesResponse _categoriesResponse=CategoriesResponse();
 
-  CategoriesResponse get categoriesResponse => _categoriesResponse!;
+  CategoriesResponse get categoriesResponse => _categoriesResponse;
 
   set categoriesResponse(CategoriesResponse value) {
     _categoriesResponse = value;
@@ -36,17 +36,17 @@ class CategoriesProvider with ChangeNotifier {
 
   // call api
 
-  void getCategoriesList() async {
+   getCategoriesList() async {
 
     status=Status.loading;
     var response = await _appRepository.getCategoriesList();
     if (response is CategoriesResponse) {
       status=Status.loaded;
-      categoriesResponse = response;
+      _categoriesResponse = response;
       print("categoriesResponse:${response.toJson()}");
     } else if (response is String) {
       status=Status.loaded;
-      categoriesError = response;
+      _categoriesError = response;
       print("Error:${response}");
     }
   }

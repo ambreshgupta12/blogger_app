@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:blogger_app/src/constants/url_constants.dart';
+import 'package:blogger_app/src/models/error/error_response.dart';
 import 'package:blogger_app/src/models/request/post/post_request.dart';
+import 'package:blogger_app/src/models/response/categories/categories_response.dart';
+import 'package:blogger_app/src/models/response/post/post_response.dart';
 import 'package:blogger_app/src/services/error_handle/handle_error.dart';
 import 'package:blogger_app/src/services/rest_client/rest_client.dart';
 import 'package:dio/dio.dart';
@@ -31,8 +36,15 @@ class AppRepository {
   Future<dynamic> getCategoriesList() async {
     try {
       var response = await apiClient!.getCategoriesList();
-      return response;
-    } on DioError catch (error) {
+      if(response.response.statusCode==200)
+        return CategoriesResponse.fromJson(response.data) ;
+      else if(response.response.statusCode==400) {
+        return ErrorResponse.fromJson((json.decode(json.encode(response.data)))).message;
+      }
+      else if(response.response.statusCode==403) {
+        return ErrorResponse.fromJson((json.decode(json.encode(response.data)))).message;
+      }
+    }  catch (error) {
       return _handleError.handleError(error);
     }
   }
@@ -42,9 +54,22 @@ class AppRepository {
     try {
       PostRequest postRequest=PostRequest(status: status,categories: postId);
       var response = await apiClient!.getPostById(postRequest: postRequest);
-      return response;
-    } on DioError catch (error) {
+      if(response.response.statusCode==200)
+        return PostResponse.fromJson(response.data);
+      else if(response.response.statusCode==400) {
+        return ErrorResponse.fromJson((json.decode(json.encode(response.data)))).message;
+      }
+      else if(response.response.statusCode==403) {
+        return ErrorResponse.fromJson((json.decode(json.encode(response.data)))).message;
+      }
+    } catch (error) {
       return _handleError.handleError(error);
     }
   }
+
+
 }
+
+
+
+

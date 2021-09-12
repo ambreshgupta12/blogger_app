@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         title: KString.appName,
         theme: AppTheme.themeData(),
          onGenerateRoute: Routes.generateRoute,
-        initialRoute: RoutePath.CategoriesListScreen,
+        initialRoute: RoutePath.SplashScreen,
       ),
     );
   }

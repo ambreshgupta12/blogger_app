@@ -22,7 +22,8 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+
+    WidgetsBinding.instance!.addPostFrameCallback((_)async {
       Provider.of<CategoriesProvider>(context,listen: false).getCategoriesList();
     });
     super.initState();
@@ -33,6 +34,7 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
     return Scaffold(
       backgroundColor: KColors.whiteLilacColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
           backgroundColor: KColors.secondaryDark,
           title: Text(KString.categoriesList,
           style: TextThemes.h20.copyWith(
