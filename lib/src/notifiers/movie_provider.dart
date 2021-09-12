@@ -1,5 +1,4 @@
 import 'package:blogger_app/src/models/response/all_post/all_post_response.dart';
-import 'package:blogger_app/src/models/response/test_response.dart';
 import 'package:blogger_app/src/services/repositories/app_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -8,13 +7,11 @@ class PostProvider with ChangeNotifier {
   final AppRepository _appRepository = AppRepository();
 
   String _postError = '';
-  TestResponse _allPostResponse = TestResponse();
+  AllPostResponse? _allPostResponse;
 
-  TestResponse get allPostResponse => _allPostResponse;
+  AllPostResponse get allPostResponse => _allPostResponse!;
 
-  bool _isLoading = false;
-
-  set allPostResponse(TestResponse value) {
+  set allPostResponse(AllPostResponse value) {
     _allPostResponse = value;
     notifyListeners();
   }
@@ -26,25 +23,16 @@ class PostProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-  bool get isLoading => _isLoading;
-
-  set isLoading(bool value) {
-    _isLoading = value;
-    notifyListeners();
-  } // call api
+  // call api
 
  void getAllPost() async {
-    isLoading = true;
     var response = await _appRepository.getAllPost();
-    isLoading = false;
-    if (response is TestResponse) {
-      allPostResponse = response;
+    if (response is AllPostResponse) {
+      _allPostResponse = response;
       print("PostData:${response.toJson()}");
     } else if (response is String) {
       _postError = response;
       print("Error:${response}");
     }
-
   }
 }

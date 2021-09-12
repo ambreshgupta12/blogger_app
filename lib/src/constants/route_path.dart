@@ -2,7 +2,7 @@
 class RoutePath {
   static const String SplashScreen = '/splashScreen';
   static const String LoginScreen = '/loginScreen';
-  static const String SignUpScreen = '/signUpScreen';
-  static const String MovieScreen = '/movieScreen';
-  static const String AddMovieScreen = '/addMovieScreen';
+  static const String CategoriesListScreen = '/categoriesListScreen';
+  static const String PostScreen = '/postScreen';
+  static const String WebViewScreen = '/webViewScreen';
 }

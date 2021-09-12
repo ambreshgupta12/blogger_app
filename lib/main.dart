@@ -1,6 +1,7 @@
 import 'package:blogger_app/src/constants/route_path.dart';
 import 'package:blogger_app/src/constants/string_constants.dart';
-import 'package:blogger_app/src/notifiers/movie_provider.dart';
+import 'package:blogger_app/src/notifiers/categories_provider.dart';
+import 'package:blogger_app/src/notifiers/post_provider.dart';
 import 'package:blogger_app/src/resource/theme/app_theme.dart';
 import 'package:blogger_app/src/routes/routes.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<CategoriesProvider>(create: (_) => CategoriesProvider()),
         ChangeNotifierProvider<PostProvider>(create: (_) => PostProvider()),
       ],
       child: MaterialApp(

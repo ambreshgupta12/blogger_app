@@ -1,10 +1,9 @@
 import 'package:blogger_app/src/constants/route_path.dart';
+import 'package:blogger_app/src/view/screen/categories/categories_list_screen.dart';
+import 'package:blogger_app/src/view/screen/posts/post_screen.dart';
 import 'package:blogger_app/src/view/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-
-
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,20 +11,10 @@ class Routes {
     switch (settings.name) {
       case RoutePath.SplashScreen:
         return MaterialPageRoute(builder: (_) => SplashScreen());
-    /*
-      case RoutePath.LoginScreen:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
-      case RoutePath.SignUpScreen:
-        return MaterialPageRoute(builder: (_) => SignUpScreen());
-        case RoutePath.MovieScreen:
-        return MaterialPageRoute( settings: settings,builder: (_) => MovieScreen());
-        case RoutePath.AddMovieScreen:
-        return MaterialPageRoute(
-            settings: settings,
-            builder: (_) => AddMovieScreen(
-            updateMovie: settings.arguments as UpdateMovie,
-            ));*/
-
+      case RoutePath.CategoriesListScreen:
+        return MaterialPageRoute(builder: (_) => CategoriesListScreen());
+      case RoutePath.PostScreen:
+        return MaterialPageRoute(settings: settings, builder: (_) => PostScreen(postId: settings.arguments as int));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
