@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:blogger_app/src/constants/color_constants.dart';
 import 'package:blogger_app/src/constants/decoration_constants.dart';
 import 'package:blogger_app/src/constants/enums.dart';
+import 'package:blogger_app/src/constants/route_path.dart';
 import 'package:blogger_app/src/constants/string_constants.dart';
 import 'package:blogger_app/src/models/response/post/post_response.dart';
 import 'package:blogger_app/src/notifiers/post_provider.dart';
@@ -134,7 +135,8 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
         itemBuilder: (context,index){
           return Card(
             child: ListTile(
-              onTap: ()=>{},
+              onTap: ()=>Navigator.of(context).pushNamed(RoutePath.PostDetailsScreen,
+              arguments: postResultList[index].content!.rendered),
               title: Text('${postResultList[index].title!.rendered}',
                   style: TextThemes.h18.copyWith(
                       color: KColors.black, fontWeight: FontWeight.w500)),
