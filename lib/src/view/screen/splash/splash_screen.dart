@@ -1,6 +1,5 @@
 import 'package:blogger_app/src/constants/color_constants.dart';
 import 'package:blogger_app/src/constants/decoration_constants.dart';
-import 'package:blogger_app/src/models/response/all_post/all_post_response.dart';
 import 'package:blogger_app/src/notifiers/movie_provider.dart';
 import 'package:blogger_app/src/resource/dimensions/dimensions.dart';
 import 'package:blogger_app/src/resource/theme/text_themes.dart';
