@@ -1,8 +1,5 @@
-import 'dart:collection';
-import 'dart:io';
 
 import 'package:blogger_app/src/constants/color_constants.dart';
-import 'package:blogger_app/src/constants/decoration_constants.dart';
 import 'package:blogger_app/src/constants/enums.dart';
 import 'package:blogger_app/src/constants/route_path.dart';
 import 'package:blogger_app/src/constants/string_constants.dart';
@@ -21,32 +18,16 @@ class PostScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateMixin {
-  late TabController _tabController;
  late PostProvider postProvider;
 
 
   @override
   void initState() {
-    print("initPost sate");
     postProvider=Provider.of<PostProvider>(context,listen: false);
     postProvider.postResponse=PostResponse();
     postProvider.postError='';
-    postProvider.getPostByCategoriesId(statuss: KString.publishTab.toLowerCase(), postId: widget.postId);
+    postProvider.getPostByCategoriesId(postId: widget.postId);
 
-    _tabController = TabController(length: 2, vsync: this)..addListener(() {
-     setState(() {
-       if(_tabController.index==0){
-         postProvider.postResponse=PostResponse();
-         postProvider.postError='';
-         postProvider.getPostByCategoriesId(statuss: KString.publishTab.toLowerCase(), postId: widget.postId);
-       }
-       else if(_tabController.index==1){
-         postProvider.postResponse=PostResponse();
-         postProvider.postError='';
-         postProvider.getPostByCategoriesId(statuss: KString.draftTab.toLowerCase(), postId: widget.postId);
-       }
-     });
-    });
 
 
     super.initState();
@@ -55,7 +36,6 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
   @override
   void dispose() {
     super.dispose();
-    _tabController.dispose();
   }
 
   @override
@@ -68,37 +48,8 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
           title: Text(KString.postsList,
               style: TextThemes.h20.copyWith(
                   color: KColors.white, fontWeight: FontWeight.bold))),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: Dimens.px16,right: Dimens.px16,top:Dimens.px16),
-            height: Dimens.px45,
-            decoration: KDecoration.boxDecoration(color: Colors.grey[300]),
-            child: TabBar(
-              controller: _tabController,
-              indicator: KDecoration.boxDecoration(color: KColors.secondaryDark),
-              labelColor: KColors.white,
-              unselectedLabelColor: KColors.black,
-              tabs: [
-                const Tab(text: KString.publishTab),
-                const Tab(text: KString.draftTab,),
-              ],
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                // first tab bar view widget
-                _buildConsumerWidget(),
-                // second tab bar view widget
-                _buildConsumerWidget()
+      body: _buildConsumerWidget(),
 
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -151,3 +102,34 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
 
 
 
+/* body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: Dimens.px16,right: Dimens.px16,top:Dimens.px16),
+            height: Dimens.px45,
+            decoration: KDecoration.boxDecoration(color: Colors.grey[300]),
+            child: TabBar(
+              controller: _tabController,
+              indicator: KDecoration.boxDecoration(color: KColors.secondaryDark),
+              labelColor: KColors.white,
+              unselectedLabelColor: KColors.black,
+              tabs: [
+                const Tab(text: KString.publishTab),
+                const Tab(text: KString.draftTab,),
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                // first tab bar view widget
+                _buildConsumerWidget(),
+                // second tab bar view widget
+                _buildConsumerWidget()
+
+              ],
+            ),
+          ),
+        ],
+      ),*/

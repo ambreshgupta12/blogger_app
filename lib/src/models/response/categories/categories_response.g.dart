@@ -32,6 +32,7 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
     description: json['description'] as String?,
     link: json['link'] as String?,
     name: json['name'] as String?,
+    slug: json['slug'] as String?,
   );
 }
 
@@ -41,4 +42,5 @@ Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
       'description': instance.description,
       'link': instance.link,
       'name': instance.name,
+      'slug': instance.slug,
     };

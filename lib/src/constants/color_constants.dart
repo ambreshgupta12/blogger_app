@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // duplicate variable names.
 class KColors {
   static const Color black = Colors.black;
+  static const Color lightWhite = Color(0xffF7F7F7);
   static const Color deepOrange = Colors.deepOrange;
   static  Color deepOrangeShade100 = Colors.deepOrange.shade100;
   static  Color white = Colors.white;

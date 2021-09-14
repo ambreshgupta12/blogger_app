@@ -1,8 +1,11 @@
+import 'package:blogger_app/src/constants/asset_constants.dart';
 import 'package:blogger_app/src/constants/color_constants.dart';
 import 'package:blogger_app/src/constants/route_path.dart';
+import 'package:blogger_app/src/notifiers/categories_provider.dart';
 import 'package:blogger_app/src/resource/theme/text_themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -16,17 +19,24 @@ class SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed(RoutePath.CategoriesListScreen);
+    //Navigator.of(context).pushReplacementNamed(RoutePath.CategoriesListScreen);
+    Navigator.of(context).pushReplacementNamed(RoutePath.CategoriesChoiceScreen);
   }
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_)async {
+      Provider.of<CategoriesProvider>(context,listen: false).getCategoriesList();
+    });
     animationController = AnimationController(vsync: this, duration: Duration(seconds: 3));
     animation = CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+
     animationController.addListener(() => this.setState(() {if (animationController.isCompleted) {navigationPage();}}));
     animationController.forward();
   }
+
+
 
   @override
   void dispose() {
@@ -38,7 +48,7 @@ class SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     TextThemes(context);
     return Scaffold(
-      backgroundColor: KColors.whiteLilacColor,
+      backgroundColor: KColors.whiteFCD,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -48,7 +58,8 @@ class SplashScreenState extends State<SplashScreen>
               Container(
                 width: animation.value * 250,
                 height: animation.value * 250,
-                child: const FlutterLogo(),
+                child: Image.asset(AssetsConstant.appIcon),
+
               )
             ],
           ),

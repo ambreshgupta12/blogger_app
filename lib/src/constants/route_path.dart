@@ -5,4 +5,5 @@ class RoutePath {
   static const String CategoriesListScreen = '/categoriesListScreen';
   static const String PostScreen = '/postScreen';
   static const String PostDetailsScreen = '/postDetailsScreen';
+  static const String CategoriesChoiceScreen = '/categoriesChoiceScreen';
 }

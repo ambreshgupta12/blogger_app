@@ -1,5 +1,4 @@
 import 'package:blogger_app/src/constants/color_constants.dart';
-import 'package:blogger_app/src/constants/decoration_constants.dart';
 import 'package:blogger_app/src/constants/enums.dart';
 import 'package:blogger_app/src/constants/route_path.dart';
 import 'package:blogger_app/src/constants/string_constants.dart';
@@ -12,7 +11,8 @@ import 'package:provider/provider.dart';
 
 
 class CategoriesListScreen extends StatefulWidget {
-  const CategoriesListScreen({Key? key}) : super(key: key);
+ final String? simsId;
+  const CategoriesListScreen({@required this.simsId});
 
   @override
   _CategoriesListScreenState createState() => _CategoriesListScreenState();
@@ -22,9 +22,8 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
 
   @override
   void initState() {
-
     WidgetsBinding.instance!.addPostFrameCallback((_)async {
-      Provider.of<CategoriesProvider>(context,listen: false).getCategoriesList();
+     await Provider.of<CategoriesProvider>(context,listen: false).getCategoriesByFilterList(simsId: widget.simsId);
     });
     super.initState();
   }
@@ -34,9 +33,8 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
     return Scaffold(
       backgroundColor: KColors.whiteLilacColor,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
           backgroundColor: KColors.secondaryDark,
-          title: Text(KString.categoriesList,
+          title: Text(KString.simsList,
           style: TextThemes.h20.copyWith(
               color: KColors.white, fontWeight: FontWeight.bold))),
 
@@ -45,11 +43,11 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
         if(categoriesProvider.status==Status.loading){
           return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(KColors.secondaryDark)));
         }
-        else if(categoriesProvider.categoriesResponse.result!=null&&categoriesProvider.status==Status.loaded){
-          List<Result>? categoriesResultList=categoriesProvider.categoriesResponse.result;
+        else if(categoriesProvider.resultFilter.isNotEmpty&&categoriesProvider.status==Status.loaded){
+          List<Result>? categoriesResultList=categoriesProvider.resultFilter;
           return  ListView.builder(
             padding: const EdgeInsets.only(left: Dimens.px16,right: Dimens.px16,top:Dimens.px16),
-            itemCount: categoriesResultList!.length,
+            itemCount: categoriesResultList.length,
             shrinkWrap: true,
             itemBuilder: (context,index){
               return Card(

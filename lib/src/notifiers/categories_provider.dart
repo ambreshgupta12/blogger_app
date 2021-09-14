@@ -9,6 +9,17 @@ class CategoriesProvider with ChangeNotifier {
   final AppRepository _appRepository = AppRepository();
   Status _status=Status.ideal;
 
+  List<Result> result=[];
+  List<Result> _resultFilter=[];
+
+
+  List<Result> get resultFilter => _resultFilter;
+  set resultFilter(List<Result> value) {
+    _resultFilter = value;
+    notifyListeners();
+  }
+
+
   String _categoriesError = '';
   CategoriesResponse _categoriesResponse=CategoriesResponse();
 
@@ -18,6 +29,7 @@ class CategoriesProvider with ChangeNotifier {
     _categoriesResponse = value;
     notifyListeners();
   }
+
 
 
   Status get status => _status;
@@ -34,20 +46,61 @@ class CategoriesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
   // call api
 
-   getCategoriesList() async {
+  Future getCategoriesList() async {
 
     status=Status.loading;
     var response = await _appRepository.getCategoriesList();
     if (response is CategoriesResponse) {
       status=Status.loaded;
       _categoriesResponse = response;
-      print("categoriesResponse:${response.toJson()}");
+      result.addAll(_categoriesResponse.result!);
     } else if (response is String) {
       status=Status.loaded;
       _categoriesError = response;
       print("Error:${response}");
     }
+
   }
+
+
+
+  Future getCategoriesByFilterList({String? simsId})async{
+    print("simsId:${simsId}");
+    status=Status.loading;
+      _resultFilter.clear();
+      await Future.forEach<Result>(result, (element){
+        String? slug=element.slug;
+        if(slug!=null&&slug.isNotEmpty&&slug.contains(simsId!)){
+          _resultFilter.add(element);
+        }
+      });
+      status=Status.loaded;
+  }
+
+  
+  /*for(int i=0;i<result.length;i++){
+        switch(sims){
+          case "sims-2-mod":
+            _resultFilter.add(result[i]);
+            break;
+          case "sims-2-cheat":
+            _resultFilter.add(result[i]);
+            break;
+          case "sims-3-mod":
+            _resultFilter.add(result[i]);
+            break;
+          case "sims-3-cheat":
+            _resultFilter.add(result[i]);
+            break;
+          case "sims-4-mod":
+            _resultFilter.add(result[i]);
+            break;
+          case "sims-4-cheat":
+            _resultFilter.add(result[i]);
+            break;
+        }
+      }*/
 }

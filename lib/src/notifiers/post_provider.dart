@@ -36,10 +36,10 @@ class PostProvider with ChangeNotifier {
 
   // call api
 
-  void getPostByCategoriesId({@required String? statuss,@required int? postId}) async {
+  void getPostByCategoriesId({@required int? postId}) async {
 
     status=Status.loading;
-    var response = await _appRepository.getPostById(status: statuss,postId: postId);
+    var response = await _appRepository.getPostById(postId: postId);
     if (response is PostResponse) {
       status=Status.loaded;
       postResponse = response;

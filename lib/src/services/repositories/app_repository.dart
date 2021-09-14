@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:blogger_app/src/constants/url_constants.dart';
 import 'package:blogger_app/src/models/error/error_response.dart';
+import 'package:blogger_app/src/models/request/categories/categories_request.dart';
 import 'package:blogger_app/src/models/request/post/post_request.dart';
 import 'package:blogger_app/src/models/response/categories/categories_response.dart';
 import 'package:blogger_app/src/models/response/post/post_response.dart';
@@ -35,7 +36,8 @@ class AppRepository {
 
   Future<dynamic> getCategoriesList() async {
     try {
-      var response = await apiClient!.getCategoriesList();
+      CategoriesRequest categoriesRequest=CategoriesRequest(exclude: '1,4');
+      var response = await apiClient!.getCategoriesList(categoriesRequest: categoriesRequest);
       if(response.response.statusCode==200)
         return CategoriesResponse.fromJson(response.data) ;
       else if(response.response.statusCode==400) {
@@ -50,9 +52,9 @@ class AppRepository {
   }
 
 
-  Future<dynamic> getPostById({@required String? status,@required int? postId}) async {
+  Future<dynamic> getPostById({@required int? postId}) async {
     try {
-      PostRequest postRequest=PostRequest(status: status,categories: postId);
+      PostRequest postRequest=PostRequest(categories: postId);
       var response = await apiClient!.getPostById(postRequest: postRequest);
       if(response.response.statusCode==200)
         return PostResponse.fromJson(response.data);

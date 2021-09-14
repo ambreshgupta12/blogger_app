@@ -23,6 +23,7 @@ class Result {
   String? description;
   String? link;
   String? name;
+  String? slug;
 
 
   Result(
@@ -30,7 +31,9 @@ class Result {
         this.count,
         this.description,
         this.link,
-        this.name});
+        this.name,
+        this.slug
+      });
 
  factory Result.fromJson(Map<String, dynamic> json) =>_$ResultFromJson(json);
 

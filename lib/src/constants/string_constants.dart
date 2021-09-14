@@ -10,6 +10,7 @@ class KString {
   /*Categories Screen*/
 
   static const String categoriesList = 'Categories List';
+  static const String simsList = 'Sims List';
   static const String postsList = 'Posts List';
   static const String publishTab = 'Publish';
   static const String draftTab = 'Draft';
