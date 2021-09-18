@@ -35,8 +35,10 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
       appBar: AppBar(
           backgroundColor: KColors.secondaryDark,
           title: Text(KString.simsList,
-          style: TextThemes.h20.copyWith(
-              color: KColors.white, fontWeight: FontWeight.bold))),
+          // style: TextThemes.h20.copyWith(
+          //     color: KColors.white, fontWeight: FontWeight.bold))),
+        style: TextStyle(
+              color: KColors.white, fontWeight: FontWeight.bold,fontSize: 20))),
 
       body: Consumer<CategoriesProvider>(
         builder: (BuildContext context, CategoriesProvider categoriesProvider, Widget? child) {
@@ -54,8 +56,10 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
                 child: ListTile(
                   onTap: ()=>Navigator.of(context).pushNamed(RoutePath.PostScreen,arguments: categoriesResultList[index].id),
                   title: Text('${categoriesResultList[index].name}',
-                      style: TextThemes.h18.copyWith(
-                          color: KColors.black, fontWeight: FontWeight.w500)),
+                      // style: TextThemes.h18.copyWith(
+                      //     color: KColors.black, fontWeight: FontWeight.w500)),
+                    style: TextStyle(
+                          color: KColors.black, fontWeight: FontWeight.w500,fontSize: 18)),
                 ),
               );
             });
@@ -63,8 +67,10 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
         else if(categoriesProvider.categoriesError.length>0&&categoriesProvider.status==Status.loaded){
          return Center(
            child: Text(categoriesProvider.categoriesError,
-                style: TextThemes.h20.copyWith(
-                    color: KColors.secondaryDark, fontWeight: FontWeight.w500)),
+                // style: TextThemes.h20.copyWith(
+                //     color: KColors.secondaryDark, fontWeight: FontWeight.w500)),
+             style: TextStyle(
+                    color: KColors.secondaryDark, fontWeight: FontWeight.w500,fontSize: 20)),
          );
         }
         return SizedBox();

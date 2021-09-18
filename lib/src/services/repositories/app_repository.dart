@@ -56,6 +56,8 @@ class AppRepository {
     try {
       PostRequest postRequest=PostRequest(categories: postId);
       var response = await apiClient!.getPostById(postRequest: postRequest);
+      print("Request: ${jsonEncode(postRequest)}");
+      print("Response: ${response}");
       if(response.response.statusCode==200)
         return PostResponse.fromJson(response.data);
       else if(response.response.statusCode==400) {
@@ -68,8 +70,6 @@ class AppRepository {
       return _handleError.handleError(error);
     }
   }
-
-
 }
 
 

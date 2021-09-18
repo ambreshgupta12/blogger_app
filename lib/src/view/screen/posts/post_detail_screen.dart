@@ -30,7 +30,8 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
       appBar: AppBar(
           backgroundColor: KColors.secondaryDark,
 
-          title: Text('Post Details',style:TextThemes.h18.copyWith(color: KColors.white,fontWeight: FontWeight.w500))),
+          // title: Text('Post Details',style:TextThemes.h18.copyWith(color: KColors.white,fontWeight: FontWeight.w500))),
+          title: Text('Post Details',style:TextStyle(color: KColors.white,fontWeight: FontWeight.w500,fontSize: 18))),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: Dimens.px0,horizontal: Dimens.px8),
           child: SingleChildScrollView(

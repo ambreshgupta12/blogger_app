@@ -42,8 +42,10 @@ class _CategoriesChoiceScreenState extends State<CategoriesChoiceScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: KColors.secondaryDark,
           title: Text(KString.categoriesList,
-              style: TextThemes.h20.copyWith(
-                  color: KColors.white, fontWeight: FontWeight.bold))),
+              // style: TextThemes.h20.copyWith(
+              //     color: KColors.white, fontWeight: FontWeight.bold))),
+        style: TextStyle(
+                  color: KColors.white, fontWeight: FontWeight.bold,fontSize: 20))),
       body: Padding(
         padding: const EdgeInsets.symmetric(
             horizontal: Dimens.px16, vertical: Dimens.px16),
@@ -77,8 +79,10 @@ class _CategoriesChoiceScreenState extends State<CategoriesChoiceScreen> {
               fit: BoxFit.fitWidth,
             ),
             Text(allSimsCheatsModel.name!,
-                style: TextThemes.h18.copyWith(
-                    color: KColors.secondaryDark, fontWeight: FontWeight.w600)),
+                // style: TextThemes.h18.copyWith(
+                //     color: KColors.secondaryDark, fontWeight: FontWeight.w600)),
+          style: TextStyle(
+                    color: KColors.secondaryDark, fontWeight: FontWeight.w600,fontSize: 18)),
           ],
         ),
       ),

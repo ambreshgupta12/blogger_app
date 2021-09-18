@@ -46,8 +46,10 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
       appBar: AppBar(
         backgroundColor: KColors.secondaryDark,
           title: Text(KString.postsList,
-              style: TextThemes.h20.copyWith(
-                  color: KColors.white, fontWeight: FontWeight.bold))),
+              // style: TextThemes.h20.copyWith(
+              //     color: KColors.white, fontWeight: FontWeight.bold))),
+        style: TextStyle(
+                  color: KColors.white, fontWeight: FontWeight.bold, fontSize: 20))),
       body: _buildConsumerWidget(),
 
     );
@@ -63,8 +65,10 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
           else if(postProvider.postError.length>0&&postProvider.status==Status.loaded){
             return Center(
               child: Text(postProvider.postError,
-                  style: TextThemes.h20.copyWith(
-                      color: KColors.secondaryDark, fontWeight: FontWeight.w500)),
+                  // style: TextThemes.h20.copyWith(
+                  //     color: KColors.secondaryDark, fontWeight: FontWeight.w500)),
+                style: TextStyle(
+                      color: KColors.secondaryDark, fontWeight: FontWeight.w500,fontSize: 20)),
             );
           }
           else if(postProvider.postResponse.result!=null&&postProvider.status==Status.loaded){
@@ -89,8 +93,10 @@ class _PostScreenState extends State<PostScreen> with SingleTickerProviderStateM
               onTap: ()=>Navigator.of(context).pushNamed(RoutePath.PostDetailsScreen,
               arguments: postResultList[index].content!.rendered),
               title: Text('${postResultList[index].title!.rendered}',
-                  style: TextThemes.h18.copyWith(
-                      color: KColors.black, fontWeight: FontWeight.w500)),
+                  // style: TextThemes.h18.copyWith(
+                  //     color: KColors.black, fontWeight: FontWeight.w500)),
+                style: TextStyle(
+                      color: KColors.black, fontWeight: FontWeight.w500,fontSize: 18)),
             ),
           );
         });

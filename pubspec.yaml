@@ -50,6 +50,8 @@ dev_dependencies:
   json_serializable: ^4.1.2
   build_runner: ^2.0.3
   flutter_html: ^2.1.0
+  flutter_web_browser: ^0.14.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

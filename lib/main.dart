@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [BotToastNavigatorObserver()],
         debugShowCheckedModeBanner: false,
         title: KString.appName,
-        theme: AppTheme.themeData(),
+        // theme: AppTheme.themeData(),
          onGenerateRoute: Routes.generateRoute,
         initialRoute: RoutePath.SplashScreen,
       ),
