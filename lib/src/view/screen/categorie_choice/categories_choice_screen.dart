@@ -4,7 +4,6 @@ import 'package:blogger_app/src/constants/decoration_constants.dart';
 import 'package:blogger_app/src/constants/route_path.dart';
 import 'package:blogger_app/src/constants/string_constants.dart';
 import 'package:blogger_app/src/resource/dimensions/dimensions.dart';
-import 'package:blogger_app/src/resource/theme/text_themes.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesChoiceScreen extends StatefulWidget {
@@ -34,7 +33,6 @@ class _CategoriesChoiceScreenState extends State<CategoriesChoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextThemes(context);
 
     return Scaffold(
       backgroundColor: KColors.whiteLilacColor,
@@ -42,8 +40,6 @@ class _CategoriesChoiceScreenState extends State<CategoriesChoiceScreen> {
           automaticallyImplyLeading: false,
           backgroundColor: KColors.secondaryDark,
           title: Text(KString.categoriesList,
-              // style: TextThemes.h20.copyWith(
-              //     color: KColors.white, fontWeight: FontWeight.bold))),
         style: TextStyle(
                   color: KColors.white, fontWeight: FontWeight.bold,fontSize: 20))),
       body: Padding(
@@ -79,8 +75,6 @@ class _CategoriesChoiceScreenState extends State<CategoriesChoiceScreen> {
               fit: BoxFit.fitWidth,
             ),
             Text(allSimsCheatsModel.name!,
-                // style: TextThemes.h18.copyWith(
-                //     color: KColors.secondaryDark, fontWeight: FontWeight.w600)),
           style: TextStyle(
                     color: KColors.secondaryDark, fontWeight: FontWeight.w600,fontSize: 18)),
           ],

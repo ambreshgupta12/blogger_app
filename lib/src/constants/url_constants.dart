@@ -3,7 +3,7 @@
 // duplicate variable names.
 
 class KUrl {
-  static const String baseURL = "http://smartanalytics.aeologic.in/api/api";
+  static const String baseURL = "http://139.59.86.135/api";
   static const String categories = "/categories";
   static const String posts = "/posts";
 

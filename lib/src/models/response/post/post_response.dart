@@ -10,7 +10,7 @@ class PostResponse {
   String? status;
   int? code;
   String? message;
-  List<Result>? result;
+  List<PostResult>? result;
 
   PostResponse({this.status, this.code, this.message, this.result});
  factory PostResponse.fromJson(Map<String, dynamic> json) =>_$PostResponseFromJson(json);
@@ -18,7 +18,7 @@ class PostResponse {
 }
 
 @JsonSerializable()
-class Result {
+class PostResult {
 
   int? id;
   String? date;
@@ -43,7 +43,7 @@ class Result {
   @JsonKey(name: 'yoast_head')
   String? yoastHead;
 
-  Result(
+  PostResult(
       {this.id,
         this.date,
         this.dateGmt,
@@ -63,9 +63,9 @@ class Result {
         this.format,
         this.yoastHead});
 
-factory Result.fromJson(Map<String, dynamic> json) =>_$ResultFromJson(json);
+factory PostResult.fromJson(Map<String, dynamic> json) =>_$PostResultFromJson(json);
 
-  Map<String, dynamic> toJson()=>_$ResultToJson(this);
+  Map<String, dynamic> toJson()=>_$PostResultToJson(this);
 }
 
 @JsonSerializable()

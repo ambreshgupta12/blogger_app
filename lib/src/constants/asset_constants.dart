@@ -11,6 +11,7 @@ class AssetsConstant {
 
   static const String editSquare = 'assets/images/edit_square.png';
   static const String trash = 'assets/images/trash.png';
+  static const String noInternet = 'assets/images/no_internet.svg';
 
 
 }

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:blogger_app/src/constants/url_constants.dart';
 import 'package:blogger_app/src/models/error/error_response.dart';
-import 'package:blogger_app/src/models/request/categories/categories_request.dart';
 import 'package:blogger_app/src/models/request/post/post_request.dart';
 import 'package:blogger_app/src/models/response/categories/categories_response.dart';
 import 'package:blogger_app/src/models/response/post/post_response.dart';
@@ -36,8 +35,8 @@ class AppRepository {
 
   Future<dynamic> getCategoriesList() async {
     try {
-      CategoriesRequest categoriesRequest=CategoriesRequest(exclude: '1,4');
-      var response = await apiClient!.getCategoriesList(categoriesRequest: categoriesRequest);
+      //CategoriesRequest categoriesRequest=CategoriesRequest(exclude: '1,4');
+      var response = await apiClient!.getCategoriesList();
       if(response.response.statusCode==200)
         return CategoriesResponse.fromJson(response.data) ;
       else if(response.response.statusCode==400) {
@@ -52,9 +51,10 @@ class AppRepository {
   }
 
 
-  Future<dynamic> getPostById({@required int? postId}) async {
+  Future<dynamic> getPostById({@required int? postId,@required int? page}) async {
     try {
-      PostRequest postRequest=PostRequest(categories: postId);
+      String status='publish,draft';
+      PostRequest postRequest=PostRequest(categories: postId,page: page,status: status);
       var response = await apiClient!.getPostById(postRequest: postRequest);
       print("Request: ${jsonEncode(postRequest)}");
       print("Response: ${response}");

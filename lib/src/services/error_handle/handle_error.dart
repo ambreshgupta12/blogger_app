@@ -59,11 +59,11 @@ class HandleError{
             errorDescription = "Send timeout in connection with API server";
             break;
           case DioErrorType.other:
-            errorDescription = "No internet connection";
+            errorDescription = "No internet connection.";
             break;
         }
       } else if (error is SocketException) {
-        errorDescription = "No internet connection ${error.toString()}";
+        errorDescription = "No internet connection";
       } else {
         errorDescription = "Unexpected error occured";
       }

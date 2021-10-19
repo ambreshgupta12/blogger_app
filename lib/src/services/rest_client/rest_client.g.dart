@@ -14,12 +14,10 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<dynamic>> getCategoriesList(
-      {required categoriesRequest}) async {
+  Future<HttpResponse<dynamic>> getCategoriesList() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(categoriesRequest.toJson());
     final _result = await _dio.fetch(_setStreamType<HttpResponse<dynamic>>(
         Options(
                 method: 'POST',

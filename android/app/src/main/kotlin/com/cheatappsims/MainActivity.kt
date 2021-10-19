@@ -1,4 +1,4 @@
-package com.blogger.blogger_app
+package com.cheatappsims
 
 import io.flutter.embedding.android.FlutterActivity
 

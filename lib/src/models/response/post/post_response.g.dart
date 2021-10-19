@@ -12,7 +12,7 @@ PostResponse _$PostResponseFromJson(Map<String, dynamic> json) {
     code: json['code'] as int?,
     message: json['message'] as String?,
     result: (json['result'] as List<dynamic>?)
-        ?.map((e) => Result.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => PostResult.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
@@ -25,8 +25,8 @@ Map<String, dynamic> _$PostResponseToJson(PostResponse instance) =>
       'result': instance.result,
     };
 
-Result _$ResultFromJson(Map<String, dynamic> json) {
-  return Result(
+PostResult _$PostResultFromJson(Map<String, dynamic> json) {
+  return PostResult(
     id: json['id'] as int?,
     date: json['date'] as String?,
     dateGmt: json['date_gmt'] as String?,
@@ -56,7 +56,8 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
+Map<String, dynamic> _$PostResultToJson(PostResult instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'date': instance.date,
       'date_gmt': instance.dateGmt,

@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.blogger.blogger_app">
+    package="com.cheatappsims">
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="blogger_app"
+        android:label="All Sims Cheats"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -8,16 +8,29 @@ class PostProvider with ChangeNotifier {
   /*App Repository */
   final AppRepository _appRepository = AppRepository();
   Status _status=Status.ideal;
+  late List<PostResult> _resultList=[];
+  int _page = 1;
 
-  String _postError = '';
-  PostResponse? _postResponse=PostResponse();
+  int get page => _page;
 
-  PostResponse get postResponse => _postResponse!;
+  set page(int value) {
+    _page = value;
+    notifyListeners();
+  } // default page
 
-  set postResponse(PostResponse value) {
-    _postResponse = value;
+
+
+  List<PostResult> get resultList => _resultList;
+
+  set resultList(List<PostResult> value) {
+    _resultList = value;
     notifyListeners();
   }
+
+  String _postError = '';
+
+
+
 
 
   Status get status => _status;
@@ -37,12 +50,11 @@ class PostProvider with ChangeNotifier {
   // call api
 
   void getPostByCategoriesId({@required int? postId}) async {
-
     status=Status.loading;
-    var response = await _appRepository.getPostById(postId: postId);
+    var response = await _appRepository.getPostById(postId: postId,page:1);
     if (response is PostResponse) {
       status=Status.loaded;
-      postResponse = response;
+      resultList.addAll(response.result!);
       print("PostData:${response.toJson()}");
     } else if (response is String) {
       status=Status.loaded;
@@ -50,4 +62,21 @@ class PostProvider with ChangeNotifier {
       print("Error:${response}");
     }
   }
+
+  void getPostByCategoriesIdLoadMore({@required int? postId}) async {
+    status=Status.loading;
+    _page=page+1;
+    var response = await _appRepository.getPostById(postId: postId,page:page);
+    if (response is PostResponse) {
+      status=Status.loaded;
+      resultList.addAll(response.result!);
+
+      print("PostData:${response.toJson()}");
+    } else if (response is String) {
+      status=Status.loaded;
+      postError = response;
+      print("Error:${response}");
+    }
+  }
+
 }

@@ -75,8 +75,10 @@ class CategoriesProvider with ChangeNotifier {
         String? slug=element.slug;
         if(slug!=null&&slug.isNotEmpty&&slug.contains(simsId!)){
           _resultFilter.add(element);
+
         }
       });
+      print("_resultFilter:${_resultFilter.length}");
       status=Status.loaded;
   }
 

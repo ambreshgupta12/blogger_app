@@ -6,4 +6,5 @@ class RoutePath {
   static const String PostScreen = '/postScreen';
   static const String PostDetailsScreen = '/postDetailsScreen';
   static const String CategoriesChoiceScreen = '/categoriesChoiceScreen';
+  static const String WebViewScreen = '/webViewScreen';
 }

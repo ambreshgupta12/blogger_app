@@ -5,7 +5,7 @@ import 'package:blogger_app/src/constants/string_constants.dart';
 import 'package:blogger_app/src/models/response/categories/categories_response.dart';
 import 'package:blogger_app/src/notifiers/categories_provider.dart';
 import 'package:blogger_app/src/resource/dimensions/dimensions.dart';
-import 'package:blogger_app/src/resource/theme/text_themes.dart';
+import 'package:blogger_app/src/view/widget/widget_failure_message.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,14 +29,11 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    TextThemes(context);
     return Scaffold(
       backgroundColor: KColors.whiteLilacColor,
       appBar: AppBar(
           backgroundColor: KColors.secondaryDark,
           title: Text(KString.simsList,
-          // style: TextThemes.h20.copyWith(
-          //     color: KColors.white, fontWeight: FontWeight.bold))),
         style: TextStyle(
               color: KColors.white, fontWeight: FontWeight.bold,fontSize: 20))),
 
@@ -54,15 +51,18 @@ class _CategoriesListScreenState extends State<CategoriesListScreen> {
             itemBuilder: (context,index){
               return Card(
                 child: ListTile(
-                  onTap: ()=>Navigator.of(context).pushNamed(RoutePath.PostScreen,arguments: categoriesResultList[index].id),
+                  onTap: ()=>Navigator.of(context).pushNamed(RoutePath.PostScreen,arguments: categoriesResultList[index]),
                   title: Text('${categoriesResultList[index].name}',
-                      // style: TextThemes.h18.copyWith(
-                      //     color: KColors.black, fontWeight: FontWeight.w500)),
                     style: TextStyle(
                           color: KColors.black, fontWeight: FontWeight.w500,fontSize: 18)),
                 ),
               );
             });
+        }
+        else if((categoriesProvider.categoriesError.length>0&&categoriesProvider.categoriesError.compareTo('No internet connection.')==0)&&categoriesProvider.status==Status.loaded){
+          return Center(
+              child: WidgetFailureMessage()
+          );
         }
         else if(categoriesProvider.categoriesError.length>0&&categoriesProvider.status==Status.loaded){
          return Center(

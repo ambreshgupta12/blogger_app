@@ -19,7 +19,6 @@ class SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
 
   void navigationPage() {
-    //Navigator.of(context).pushReplacementNamed(RoutePath.CategoriesListScreen);
     Navigator.of(context).pushReplacementNamed(RoutePath.CategoriesChoiceScreen);
   }
 
@@ -30,7 +29,7 @@ class SplashScreenState extends State<SplashScreen>
       Provider.of<CategoriesProvider>(context,listen: false).getCategoriesList();
     });
     animationController = AnimationController(vsync: this, duration: Duration(seconds: 3));
-    animation = CurvedAnimation(parent: animationController, curve: Curves.easeOut);
+    animation = CurvedAnimation(parent: animationController, curve: Curves.linear);
 
     animationController.addListener(() => this.setState(() {if (animationController.isCompleted) {navigationPage();}}));
     animationController.forward();
@@ -56,8 +55,8 @@ class SplashScreenState extends State<SplashScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                width: animation.value * 250,
-                height: animation.value * 250,
+                width: animation.value * 280,
+                height: animation.value * 280,
                 child: Image.asset(AssetsConstant.appIcon),
 
               )
