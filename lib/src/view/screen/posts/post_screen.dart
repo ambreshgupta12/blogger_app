@@ -70,7 +70,7 @@ class _PostScreenState extends State<PostScreen>
                     fontWeight: FontWeight.bold,
                     fontSize: 20))),
         floatingActionButton: Visibility(
-          visible: ((widget.result!.count!=null&&widget.result!.count!>8)&&(postProvider.resultList.length>10)),
+          visible: ((postProvider.resultList.length>10)),
           child: FloatingActionButton(
             backgroundColor: KColors.secondaryDark,
             onPressed: (){
