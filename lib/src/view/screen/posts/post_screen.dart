@@ -160,14 +160,15 @@ class _PostScreenState extends State<PostScreen>
                   child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(KColors.secondaryDark)),
                 ));
-          } else if (index < postProvider.resultList.length)
+          } else if (index < postProvider.resultList.length){
+            print("${postProvider.resultList[index].excerpt!.rendered}");
             return Card(
               child: ListTile(
                 onTap: () => Navigator.of(context).pushNamed(
                     RoutePath.PostDetailsScreen,
                     arguments:
-                        postProvider.resultList[index].content!.rendered),
-               /* title: Text('${removeAllHtmlTags(postProvider.resultList[index].excerpt!.rendered)}',
+                    postProvider.resultList[index].content!.rendered),
+                /* title: Text('${removeAllHtmlTags(postProvider.resultList[index].excerpt!.rendered)}',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: KColors.black,
@@ -178,9 +179,9 @@ class _PostScreenState extends State<PostScreen>
                 title: Html(
                     style: {
                       "p": Style(
-                        color: KColors.black,
-                        fontSize: FontSize.larger,
-                        fontWeight: FontWeight.w500
+                          color: KColors.black,
+                          fontSize: FontSize.larger,
+                          fontWeight: FontWeight.w500
                       ),
                     },
                     shrinkWrap: true,
@@ -188,6 +189,7 @@ class _PostScreenState extends State<PostScreen>
 
               ),
             );
+          }
           return SizedBox();
         });
   }

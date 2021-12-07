@@ -78,7 +78,10 @@ class CategoriesProvider with ChangeNotifier {
 
         }
       });
-      print("_resultFilter:${_resultFilter.length}");
+    _resultFilter.forEach((element) {
+      print("_resultFilter:${element.name}");
+    });
+
       status=Status.loaded;
   }
 
